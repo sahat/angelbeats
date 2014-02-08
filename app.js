@@ -140,3 +140,15 @@ upload.on('end', function (fileInfo) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+
+var io = require('socket.io').listen(app.listen(app.get('port')));
+
+io.enable('browser client minification');
+io.enable('browser client etag');
+io.enable('browser client gzip');
+io.set('log level', 1);
+
+io.configure(function () {
+  io.set('transports', ['websocket']);
+});
