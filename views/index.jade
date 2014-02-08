@@ -2,3 +2,27 @@ extends layout
 
 block content
   div.progrecss.green.fixed
+
+  .container
+    .row.text-center
+      ul.bars.clearfix
+        li.bar1
+        li.bar2
+        li.bar3
+        li.bar4
+        li.hidden
+      span.angel-beats Angel
+        strong Beats
+
+    .row.text-center
+      .col-sm-4
+        |&nbsp;
+      .col-sm-4
+        p
+          span#song-count 0 songs
+          |,&nbsp;
+          span#total-time 0 hours 0 minutes
+      .col-sm-4
+        .search-controls
+          #upload-progress.progress(style='display: none')
+            .progress-bar.progress-bar-info
