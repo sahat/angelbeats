@@ -141,3 +141,27 @@ tr.highlight td {
   ////    background: #0058ae;
   //  }
 }
+
+
+@media (min-width: 768px) {
+  .navbar-form.navbar-right:last-child {
+    margin-right: 0;
+  }
+}
+
+//input::-webkit-input-placeholder {
+//  color: #9dc9f5 !important;
+//}
+//
+//input::-moz-placeholder {
+//  color: #9dc9f5 !important;
+//  opacity: 1;
+//}
+//
+//input:-ms-input-placeholder {
+//  color: #9dc9f5 !important;
+//}
+
+.form-control:focus {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
