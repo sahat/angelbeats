@@ -191,6 +191,12 @@ io.sockets.on('connection', function (socket) {
     numberOfClients: connectedClients
   });
 
+
+  socket.on('ping', function () {
+    socket.emit('pong');
+  });
+
+
   socket.on('disconnect', function() {
     if (socket.id == hostId) {
       console.log('host has left');
