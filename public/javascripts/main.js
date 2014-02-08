@@ -60,4 +60,10 @@ $(document).ready(function() {
     latency = Date.now() - startTime;
   });
 
+  $('#play').click(function(player) {
+    if (isPlaying) {
+      return;
+    }
+    $('.track').first().trigger('dblclick');
+  })
 });
