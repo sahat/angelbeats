@@ -165,3 +165,25 @@ tr.highlight td {
 .form-control:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
 }
+
+
+// Playback controls
+.playback-controls {
+  font-size: 16px;
+}
+
+.search-controls {
+  margin-top: 20px;
+
+  .form-control {
+    display: inline;
+  }
+}
+
+.playlist-controls {
+  h1, h2, h3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
