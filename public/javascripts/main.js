@@ -72,4 +72,16 @@ $(document).ready(function() {
     clearInterval(latencyInterval);
     socket.emit('pause');
   });
+
+  $('#forward').click(function() {
+    if (isPlaying) {
+      $('.highlight').next().trigger('dblclick');
+    }
+  });
+
+  $('#backward').click(function() {
+    if (isPlaying) {
+      $('.highlight').prev().trigger('dblclick');
+    }
+  });
 });
