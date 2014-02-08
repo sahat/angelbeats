@@ -11,6 +11,8 @@ var path = require('path');
 var mm = require('musicmetadata');
 var Sequelize = require('sequelize');
 var upload = require('jquery-file-upload-middleware');
+var sass = require('node-sass');
+var _ = require('lodash');
 
 if (process.env.HEROKU_POSTGRESQL_GOLD_URL) {
   var match = process.env.HEROKU_POSTGRESQL_GOLD_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
