@@ -84,4 +84,17 @@ $(document).ready(function() {
       $('.highlight').prev().trigger('dblclick');
     }
   });
+
+  // Display number of connected users
+  socket.on('count', function (data) {
+    // clear everything in the dropdown menu
+    $('.connected-counter ul.dropdown-menu').html('');
+    for (var i = 0; i < data.clients.length; i++) {
+      var client = data.clients[i];
+      console.log(client)
+      $('.connected-counter ul.dropdown-menu').append('<li>' + client.address.address + '</li>')
+    }
+    console.log(data.clients);
+    $('#numberOfClients').hide().fadeIn(200).text(data.numberOfClients);
+  });
 });
