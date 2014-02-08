@@ -152,3 +152,28 @@ io.set('log level', 1);
 io.configure(function () {
   io.set('transports', ['websocket']);
 });
+
+var clients = [];
+var connectedClients = 0;
+
+io.sockets.on('connection', function (socket) {
+
+  io.sockets.emit('count', {
+    clients: clients,
+    numberOfClients: connectedClients
+  });
+
+  socket.on('disconnect', function() {
+
+
+    connectedClients--;
+    // pop client from the array
+    clients = _.without(clients, _.findWhere(clients, { socketId: socket.id }));
+
+    io.sockets.emit('count', {
+      clients: clients,
+      numberOfClients: connectedClients
+    });
+  });
+
+});
