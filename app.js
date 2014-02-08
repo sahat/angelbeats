@@ -62,11 +62,80 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(sass.middleware({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.errorHandler());
+app.use(function(req, res, next){
+  if (req.path.indexOf('uploads') !== -1) {
+    // 404 on /uploads/filename
+    var track404 = req.path.split('/').slice(-1)[0];
+    Track.find({ where: { file: track404 } })
+      .success(function (track) {
+        if (track) {
+          track.destroy()
+            .success(function() {
+              console.log('deleted - ', track404);
+              return res.send( { message: 'Track no longer exists' });
+            });
+        }
+      });
+  }
+  console.log('404');
+  res.send(404, 'Sorry cant find that!');
+});
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+upload.on('error', function (err) {
+  if (err) return console.log(err);
+});
+
+upload.on('abort', function (fileInfo) {
+  console.log('Abborted upload of ' + fileInfo.name);
+});
+
+upload.on('end', function (fileInfo) {
+  console.log('finished');
+
+  var filePath = path.join(__dirname, 'public', 'uploads', fileInfo.name);
+
+  console.log(fileInfo.name)
+  console.log(fileInfo.originalName)
+  if (fileInfo.name !== fileInfo.originalName) {
+    console.log('dup file');
+    fs.unlink(filePath);
+  } else {
+    console.log('new file');
+
+    console.log('Getting metadata...');
+
+    var parser = mm(fs.createReadStream(filePath), { duration: true });
+
+    parser.on('metadata', function(meta) {
+      console.log('ON META!===')
+
+      Track
+        .sync()
+        .on('success', function () {
+          Track.create({
+            file: fileInfo.name,
+            name: meta.title,
+            time: meta.duration,
+            artist: _.first(meta.artist),
+            album: meta.album,
+            genre: _.first(meta.genre)
+          })
+            .success(function (track, created) {
+              console.log('Successfully created a new track');
+            })
+            .error(function (err) {
+              console.log(err);
+            })
+        });
+    });
+
+    parser.on('error', function(err) {
+      console.log('Oops:', err.message)
+    });
+  }
+
+});
 
 app.get('/', routes.index);
 app.get('/users', user.list);
