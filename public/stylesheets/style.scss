@@ -1,39 +1,39 @@
-// Typography
+// Brand Colors
+$brand-primary: #4d90fc;
+$brand-success: #60bf60;
+$brand-warning: #ff9800;
+$brand-danger: #de4b33;
+$brand-info: #5bc0dd;
 
-// Brand colors
-$brand-primary: #4f8edd;
-$brand-success: #85c844;
-$brand-warning: #cba50d;
-$brand-danger: #e72c3c;
-$brand-info: #2bbce1;
-
-// Navbar
 $navbar-height: 40px;
-$navbar-inverse-bg: #313338;
+//$navbar-default-bg: #0b79e5;
 
-// Buttons
-$btn-font-weight: 600;
-$btn-default-bg: #e6e7e7;
-$btn-default-border: #e6e7e7;
+$navbar-default-bg: #111;
+$navbar-default-link-color: #fff;
+$navbar-default-link-hover-color: #fff;
+$navbar-default-link-hover-bg: #278ff7;
 
-// Alerts and form states
-$state-success-text: #527f26;
-$state-success-bg: #ebf6e1;
-$state-success-border: #b8df92;
-$state-info-text: #157890;
-$state-info-bg: #ddf4fb;
-$state-info-border: #84d8ed;
-$state-warning-text: #917608;
-$state-warning-bg: #fbf3d0;
-$state-warning-border: #f6dc6f;
-$state-danger-text: #a81515;
-$state-danger-bg: #fdf2f2;
-$state-danger-border: #f29797;
-
-// Forms
 $input-border-radius: 0;
 $input-border-focus: #2598f9;
+$input-color: #999;
+//$input-bg: #0065c7;
+$input-bg: #111;
 
+//$text-muted: #9dc9f5;
+
+
+$table-bg: #0b79e5;
+$table-bg-accent: #9dc9f5;
+
+$table-bg-hover: #0065c7;
+
+$screen-xs: 0;
+$screen-phone: $screen-xs;
+$grid-float-breakpoint: $screen-phone;
+
+@import "progrecss.css.scss";
+@import "animate.css.scss";
+@import "jquery.fileupload.css.scss";
 @import "bootstrap/bootstrap";
 
 html, body {
