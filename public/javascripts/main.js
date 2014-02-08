@@ -96,7 +96,24 @@ $(document).ready(function() {
       socket.emit('ping');
     }, 8);
 
+    // Step 2
+    // Tell server that we want to play a song, by passing a track id.
+    // Start with a 0.5s delay to give time for synchronization.
+    var self = this;
+    setTimeout(function() {
+      console.log('initiating play');
 
+      socket.emit('initiatePlay', {
+        id: $(self).find('.id').text(),
+        file: $(self).find('.file').text(),
+        name: $(self).find('.name').text(),
+        time: $(self).find('.time').text(),
+        artist: $(self).find('.artist').text(),
+        album: $(self).find('.album').text(),
+        genre: $(self).find('.genre').text()
+      });
+
+    }, 500);
   });
 
   socket.on('beginPlaying', function(data) {
