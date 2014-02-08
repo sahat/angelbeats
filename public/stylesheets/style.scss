@@ -76,3 +76,35 @@ tr.highlight td {
   color: #9dc9f5;
   background-color: #0065c7 !important;
 }
+
+// Navbar
+.navbar-default .navbar-nav > li > a {
+  font-weight: 200;
+  transition: background .2s ease;
+}
+
+.navbar-default .navbar-text {
+  color: #fff;
+}
+
+.navbar-fixed-bottom {
+  border-width: 0;
+}
+
+
+.btn {
+  border-radius: 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.11), 1px 1px 0 rgba(255, 255, 255, 0.21) inset;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-xs {
+  padding: 2px 6px;
+}
+
+.btn-default, .btn-default:focus {
+  background-image: linear-gradient(to bottom, #ffffff 60%, #f8f8f8 100%);
+}
