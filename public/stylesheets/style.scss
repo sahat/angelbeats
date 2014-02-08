@@ -36,67 +36,43 @@ $grid-float-breakpoint: $screen-phone;
 @import "jquery.fileupload.css.scss";
 @import "bootstrap/bootstrap";
 
-html, body {
-  height: 100%;
-}
-
-// Needed to make sticky footer work with Ember
-.ember-view {
-  height: 100%;
-}
 
 body {
-  padding-top: 40px;
+  background-color: #fbfbfb;
+  padding-bottom: 20px;
 }
 
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by its height */
-  margin: 0 auto -120px;
-  /* Pad bottom by footer height */
-  // I am using 140px instead of 120px to give some room between #wrap and #footer
-  // Otherwise footer will be almost touching your page content
-  padding: 0 0 140px;
+// Table
+.table {
+  color: #fff;
+  font-size: 13px !important;
 }
 
-#footer {
-  height: 120px;
-  padding-top: 20px;
-  background-color: $navbar-default-bg;
-  border-top: 1px solid $navbar-default-border;
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  color: #9dc9f5;
 }
 
-.alert {
-  border-radius: 1px;
+th {
+  font-weight: 600 !important;
 }
 
-.form-control:focus {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+.table thead {
+  background: #0065c7 !important;
 }
 
-.navbar-brand {
-  background-image: url(http://www.joyent.com/content/07-blog/722-joyent-to-sponsor-and-present-at-mongosv-2012/mongodb-leaf.png);
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: left center;
-  padding-left: 40px;
-  margin-left: 15px;
+.table td, .table th {
+  border: 0 !important;
 }
 
-.btn {
-  padding: 8px 16px;
-  border-width: 0;
-  border-radius: 1px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
+tbody > tr {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
-.btn-social {
-  padding-left: 44px !important;
-}
-
-[class^="fa-"],
-[class*="fa-"] {
-  margin-right: 5px;
+tr.highlight td {
+  color: #9dc9f5;
+  background-color: #0065c7 !important;
 }
