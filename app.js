@@ -242,3 +242,16 @@ io.sockets.on('connection', function (socket) {
   });
 
 });
+
+process.on('exit', function() {
+  console.log('bye...');
+  Track.drop();
+});
+
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  Track.drop()
+    .success(function() {
+      process.exit();
+    });
+});
