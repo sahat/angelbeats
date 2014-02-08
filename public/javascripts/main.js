@@ -120,4 +120,14 @@ $(document).ready(function() {
   });
 
 
+  /**
+   * Convert track duration in secs to m:ss format
+   * E.g. 187 to 3:07
+   */
+  $('.time').each(function(index) {
+    var time = moment.duration({s: $(this).text() });
+    var prettyTime = moment().startOf('day').add(time).format('m:ss')
+    $(this).text(prettyTime);
+  });
+
 });
