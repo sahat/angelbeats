@@ -51,4 +51,13 @@ $(document).ready(function() {
 
   });
 
+  var latency;
+  var latencyInterval;
+  var isPlaying = false;
+  var startTime;
+
+  socket.on('pong', function() {
+    latency = Date.now() - startTime;
+  });
+
 });
