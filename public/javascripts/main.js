@@ -60,6 +60,45 @@ $(document).ready(function() {
     latency = Date.now() - startTime;
   });
 
+  // Step 1
+  // User clicks on a track from the playlist.
+  $('.track').dblclick(function (e) {
+
+    // Remove previous audio tag
+    $('audio').remove();
+
+    $('.playlist-controls').removeClass('fadeInDown animated');
+
+
+
+    // Shouldn't be able to double click an already selected track
+    if ($(e.target).parent().hasClass('highlight')) {
+      return;
+    }
+
+    isPlaying = true;
+
+    // Display synchronize banner in top right corner
+    $('.sync').show();
+
+    // Highlight current track when user double clicks on it
+    if (e.originalEvent !== undefined) {
+      $('.highlight').removeClass('highlight');
+      $(this).addClass('highlight');
+    }
+
+    // Pause currently playing track first
+    socket.emit('pause');
+
+    // update ping every 8ms
+    latencyInterval = setInterval (function() {
+      startTime = Date.now();
+      socket.emit('ping');
+    }, 8);
+
+
+  });
+
   socket.on('beginPlaying', function(data) {
 
     // No longer need to show synchronizing.. message
