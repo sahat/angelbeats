@@ -155,8 +155,36 @@ io.configure(function () {
 
 var clients = [];
 var connectedClients = 0;
+var hostId;
+var hostTimeout;
 
 io.sockets.on('connection', function (socket) {
+
+  if (connectedClients < 1) {
+    console.log(socket.id);
+    console.log('----host!-----------')
+    hostId = socket.id;
+  }
+
+  socket.on('hostComeback', function(newHostId) {
+    hostId = newHostId;
+    clearTimeout(hostTimeout);
+  });
+
+  // As of socket.io 1.0 to get an IP address changes to:
+  //  socket.request.connection.remoteAddress
+  clients.push({
+    socketId: socket.id,
+    address: socket.handshake.address
+  });
+
+  // Increment client count
+  connectedClients++;
+
+  socket.on('checkIfHost', function (clientId) {
+    console.log(clientId);
+    socket.emit('checkIfHostAnswer', clientId === hostId);
+  });
 
   io.sockets.emit('count', {
     clients: clients,
@@ -164,7 +192,13 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('disconnect', function() {
-
+    if (socket.id == hostId) {
+      console.log('host has left');
+      hostTimeout = setTimeout(function() {
+        console.log('deleting host in 60sec')
+        hostId = null;
+      }, 60000);
+    }
 
     connectedClients--;
     // pop client from the array
