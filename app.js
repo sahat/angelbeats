@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var Sequelize = require('sequelize');
+var upload = require('jquery-file-upload-middleware');
 
 if (process.env.HEROKU_POSTGRESQL_GOLD_URL) {
   var match = process.env.HEROKU_POSTGRESQL_GOLD_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
@@ -42,6 +43,11 @@ sequelize
     }
   });
 
+upload.configure({
+  uploadDir: __dirname + '/public/uploads',
+  uploadUrl: '/uploads'
+});
+
 var app = express();
 
 // all environments
@@ -54,6 +60,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
+app.use(sass.middleware({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
