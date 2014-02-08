@@ -138,8 +138,21 @@ upload.on('end', function (fileInfo) {
 
 });
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/', function(req, res) {
+  Track
+    .sync()
+    .on('success', function () {
+      Track
+        .findAll()
+        .success(function (tracks) {
+          res.send(tracks);
+        });
+    })
+    .on('error', function (err) {
+      res.send(500, err);
+    });
+});
+
 
 
 var io = require('socket.io').listen(app.listen(app.get('port')));
