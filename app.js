@@ -8,6 +8,20 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var Sequelize = require('sequelize');
+
+if (process.env.HEROKU_POSTGRESQL_GOLD_URL) {
+  var match = process.env.HEROKU_POSTGRESQL_GOLD_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
+  var sequelize = new Sequelize(match[5], match[1], match[2], {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    port: match[4],
+    host: match[3],
+    logging: true
+  });
+} else {
+  sequelize = new Sequelize('test', 'root', 'pass');
+}
 
 var app = express();
 
