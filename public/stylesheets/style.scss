@@ -187,3 +187,63 @@ tr.highlight td {
     overflow: hidden;
   }
 }
+
+.connected-counter {
+  background: #2ECC40;
+  color: #fff;
+  text-shadow: 0 0 3px #111;
+  position: fixed;
+  top: 0;
+  padding: 4px 8px;
+  z-index: 100000;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .dropdown-menu {
+    margin: -1px;
+    border-radius: 0;
+    text-shadow: none;
+    background-color: #111;
+    text-align: center;
+    z-index: 100001;
+  }
+}
+
+.sync {
+  color: #fff;
+  display: none;
+  background: #FF4136;
+  text-shadow: 0 0 3px #111;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 4px 8px;
+  z-index: 100000;
+}
+
+.guest-mode {
+  color: #fff;
+  display: none;
+  background: $brand-danger;
+  text-shadow: 0 0 3px #111;
+  position: fixed;
+  top: 25px;
+  left: 0;
+  padding: 4px 8px;
+  z-index: 10000;
+}
+
+.host-mode {
+  color: #fff;
+  display: none;
+  background: $brand-primary;
+  text-shadow: 0 0 3px #111;
+  position: fixed;
+  top: 25px;
+  left: 0;
+  padding: 4px 8px;
+  z-index: 10000;
+}
