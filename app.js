@@ -191,11 +191,23 @@ io.sockets.on('connection', function (socket) {
     numberOfClients: connectedClients
   });
 
+  socket.on('initiatePlay', function (data) {
+    console.log(data);
+    io.sockets.emit('beginPlaying', data);
+  });
 
   socket.on('ping', function () {
     socket.emit('pong');
   });
 
+  socket.on('initiatePlay', function (data) {
+    console.log(data);
+    io.sockets.emit('beginPlaying', data);
+  });
+
+  socket.on('pause', function () {
+    io.sockets.emit('halt', 'maestro stop playing!');
+  });
 
   socket.on('disconnect', function() {
     if (socket.id == hostId) {
