@@ -108,3 +108,36 @@ tr.highlight td {
 .btn-default, .btn-default:focus {
   background-image: linear-gradient(to bottom, #ffffff 60%, #f8f8f8 100%);
 }
+
+// Forms
+
+.navbar-form {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+@media (min-width: 0) {
+  .navbar-form.navbar-right:last-child {
+    margin-right: 0;
+  }
+}
+
+.search {
+  height: 40px;
+  font-size: 16px;
+  font-weight: 200;
+  text-overflow: ellipsis;
+  border: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+
+  //
+  //  &:hover {
+  ////    background: #0058ae;
+  //  }
+}
