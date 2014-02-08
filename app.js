@@ -23,6 +23,25 @@ if (process.env.HEROKU_POSTGRESQL_GOLD_URL) {
   sequelize = new Sequelize('test', 'root', 'pass');
 }
 
+var Track = sequelize.define('Track', {
+  file: { type: Sequelize.STRING, unique: true },
+  name: { type: Sequelize.STRING },
+  time: { type: Sequelize.INTEGER },
+  artist: { type: Sequelize.STRING },
+  album: { type: Sequelize.STRING },
+  genre: { type: Sequelize.STRING }
+});
+
+sequelize
+  .sync()
+  .complete(function(err) {
+    if (err) {
+      console.log('✗ Error occurred while creating the table:', err)
+    } else {
+      console.log('✓ Sequelize Sync Complete')
+    }
+  });
+
 var app = express();
 
 // all environments
