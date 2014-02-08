@@ -258,3 +258,377 @@ tr.highlight td {
     padding-bottom: 14px;
   }
 }
+
+
+
+@-moz-keyframes move1 {
+  0% {
+    height: 5px;
+  }
+
+  25% {
+    height: 20px;
+  }
+
+  75% {
+    height: 15px;
+  }
+
+  100% {
+    height: 5px;
+  }
+}
+
+@-moz-keyframes move2 {
+  0% {
+    height: 2px;
+  }
+
+  25% {
+    height: 12px;
+  }
+
+  75% {
+    height: 20px;
+  }
+
+  100% {
+    height: 2px;
+  }
+}
+
+@-moz-keyframes move3 {
+  0% {
+    height: 7px;
+  }
+
+  25% {
+    height: 2px;
+  }
+
+  75% {
+    height: 20px;
+  }
+
+  100% {
+    height: 7px;
+  }
+}
+
+@-moz-keyframes move4 {
+  0% {
+    height: 12px;
+  }
+
+  25% {
+    height: 5px;
+  }
+
+  75% {
+    height: 22px;
+  }
+
+  100% {
+    height: 12px;
+  }
+}
+
+@-webkit-keyframes stop {
+  0% {
+    height: 20px;
+  }
+
+  100% {
+    height: 4px;
+  }
+}
+
+@-webkit-keyframes hover {
+  0% {
+    height: 5px;
+  }
+
+  100% {
+    height: 20px;
+  }
+}
+
+@-webkit-keyframes move1 {
+  0% {
+    height: 5px;
+  }
+
+  25% {
+    height: 20px;
+  }
+
+  75% {
+    height: 15px;
+  }
+
+  100% {
+    height: 5px;
+  }
+}
+
+@-webkit-keyframes move2 {
+  0% {
+    height: 2px;
+  }
+
+  25% {
+    height: 12px;
+  }
+
+  75% {
+    height: 20px;
+  }
+
+  100% {
+    height: 2px;
+  }
+}
+
+@-webkit-keyframes move3 {
+  0% {
+    height: 7px;
+  }
+
+  25% {
+    height: 2px;
+  }
+
+  75% {
+    height: 20px;
+  }
+
+  100% {
+    height: 7px;
+  }
+}
+
+@-webkit-keyframes move4 {
+  0% {
+    height: 12px;
+  }
+
+  25% {
+    height: 5px;
+  }
+
+  75% {
+    height: 22px;
+  }
+
+  100% {
+    height: 12px;
+  }
+}
+
+.bars {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 15px;
+  width: 19px;
+  height: 20px;
+  /* true is 22 */
+  position: relative;
+}
+
+.bars li {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  float: left;
+  width: 4px;
+  background: #635863;
+  @include gradient(top, #dc1515, #a81515);
+  -webkit-border-radius: 1px 1px 0px 0px;
+  -moz-border-radius: 1px 1px 0px 0px;
+  border-radius: 1px 1px 0px 0px;
+  -webkit-transition: height 0.4s linear;
+  -moz-transition: height 0.4s linear;
+  -o-transition: height 0.4s linear;
+  transition: height 0.4s linear;
+}
+
+.bars:first-child {
+  margin-left: 0;
+}
+
+.bars:last-child {
+  margin-right: 0;
+}
+
+.bar1 {
+  left: 0px;
+  height: 16px;
+  -moz-animation: move1 infinite 2s linear;
+  -webkit-animation: move1 infinite 2s linear;
+}
+
+.bar2 {
+  left: 5px;
+  height: 12px;
+  -moz-animation: move2 infinite 4s linear;
+  -webkit-animation: move2 infinite 4s linear;
+}
+
+.bar3 {
+  left: 10px;
+  height: 18px;
+  -moz-animation: move3 infinite 2s linear;
+  -webkit-animation: move3 infinite 2s linear;
+}
+
+.bar4 {
+  left: 15px;
+  height: 9px;
+  -moz-animation: move4 infinite 0.8s linear;
+  -webkit-animation: move4 infinite 0.8s linear;
+}
+
+.hidden {
+  height: 300px;
+  box-shadow: none !important;
+}
+
+/* ANIMATION RULES */
+@-webkit-keyframes loading {
+  from {
+    width: 0
+  }
+  to {
+    width: 100%
+  }
+}
+
+@-moz-keyframes loading {
+  from {
+    width: 0
+  }
+  to {
+    width: 100%
+  }
+}
+
+@-o-keyframes loading {
+  from {
+    width: 0
+  }
+  to {
+    width: 100%
+  }
+}
+
+@keyframes loading {
+  from {
+    width: 0
+  }
+  to {
+    width: 100%
+  }
+}
+
+
+/* PROGRESS BAR */
+
+//.progress {
+//  position: relative;
+//  width: 0;
+//  height: 2px;
+//  -webkit-animation: loading 3s linear forwards;
+//  -moz-animation: loading 3s linear forwards;
+//  -o-animation: loading 3s linear forwards;
+//  animation: loading 3s linear forwards
+//}
+//
+///* SPHERE */
+//.progress:after {
+//  content: '';
+//  position: absolute;
+//  right: -2px;
+//  top: -4px;
+//  height: 10px;
+//  width: 10px;
+//  -webkit-border-radius: 150px;
+//  -moz-border-radius: 150px;
+//  border-radius: 150px
+//}
+
+/* COLORS */
+
+.green {
+  background: #bfff00;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#BFFF00), to(#99ff00));
+  background: -webkit-linear-gradient(#bfff00, #99ff00);
+  background: -moz-linear-gradient(#bfff00, #99ff00);
+  background: -o-linear-gradient(#bfff00, #99ff00);
+  background: linear-gradient(#bfff00, #99ff00);
+  -webkit-box-shadow: 0 0 20px #bfff00;
+  -moz-box-shadow: 0 0 20px #bfff00;
+  box-shadow: 0 0 20px #bfff00
+}
+
+.green:after {
+  background: #bfff00;
+  -webkit-box-shadow: 0 0 20px #bfff00;
+  -moz-box-shadow: 0 0 20px #bfff00;
+  box-shadow: 0 0 20px #bfff00
+}
+
+.red {
+  background: #cd5c5c;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#B42000), to(#cc3300));
+  background: -webkit-linear-gradient(#cd5c5c, #cd5c5c);
+  background: -moz-linear-gradient(#cd5c5c, #cd5c5c);
+  background: -o-linear-gradient(#cd5c5c, #cd5c5c);
+  background: linear-gradient(#cd5c5c, #cd5c5c);
+  -webkit-box-shadow: 0 0 20px #cd5c5c;
+  -moz-box-shadow: 0 0 20px #cd5c5c;
+  box-shadow: 0 0 20px #cd5c5c
+}
+
+.red:after {
+  background: #cd5c5c;
+  -webkit-box-shadow: 0 0 20px #cd5c5c;
+  -moz-box-shadow: 0 0 20px #cd5c5c;
+  box-shadow: 0 0 20px #cd5c5c
+}
+
+.purple {
+  background: #cd00cd;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#cd00cd), to(#cc00cc));
+  background: -webkit-linear-gradient(#cd00cd, #cc00cc);
+  background: -moz-linear-gradient(#cd00cd, #cc00cc);
+  background: -o-linear-gradient(#cd00cd, #cc00cc);
+  background: linear-gradient(#cd00cd, #cc00cc);
+  box-shadow: 0 0 20px #cd00cd
+}
+
+.purple:after {
+  background: #cd00cd;
+  -webkit-box-shadow: 0 0 20px #cd00cd;
+  -moz-box-shadow: 0 0 20px #cd00cd;
+  box-shadow: 0 0 20px #cd00cd
+}
+
+.blue {
+  background: #0080ff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#0080ff), to(#0099ff));
+  background: -webkit-linear-gradient(#0080ff, #0099ff);
+  background: -moz-linear-gradient(#0080ff, #0099ff);
+  background: -o-linear-gradient(#0080ff, #0099ff);
+  background: linear-gradient(#0080ff, #0099ff);
+  -webkit-box-shadow: 0 0 20px #0080ff;
+  -moz-box-shadow: 0 0 20px #0080ff;
+  box-shadow: 0 0 20px #0080ff
+}
+
+.blue:after {
+  background: #3cf;
+  -webkit-box-shadow: 0 0 20px #0080ff;
+  -moz-box-shadow: 0 0 20px #0080ff;
+  box-shadow: 0 0 20px #0080ff
+}
