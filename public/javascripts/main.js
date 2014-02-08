@@ -104,5 +104,20 @@ $(document).ready(function() {
     });
   });
 
+  /**
+   * Table List
+   * @type {{valueNames: string[]}}
+   */
+  var options = {
+    valueNames: ['id', 'name', 'time', 'artist', 'album', 'genre']
+  };
+
+  // Init list
+  var playlist = new List('playlist', options);
+
+  $('.search').keyup(function() {
+    playlist.search($(this).val());
+  });
+
 
 });
