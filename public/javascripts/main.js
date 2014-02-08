@@ -60,7 +60,7 @@ $(document).ready(function() {
     latency = Date.now() - startTime;
   });
 
-  socket.on('beginPlaying', function (data) {
+  socket.on('beginPlaying', function(data) {
 
     // No longer need to show synchronizing.. message
     $('.sync').hide();
@@ -69,8 +69,9 @@ $(document).ready(function() {
     $('.highlight').removeClass('highlight');
     $('.id:contains(' + data.id + ')').first().parent().addClass('highlight');
 
-    $('.playlist-controls').text(data.name);
-    $('.playlist-controls').addClass('fadeInDown animated');
+    var $playlistControls = $('.playlist-controls');
+    $playlistControls.text(data.name);
+    $playlistControls.addClass('fadeInDown animated');
 
 
     var player = '<audio class="player">' +
@@ -81,9 +82,6 @@ $(document).ready(function() {
     $(player).insertAfter('#playlist');
 
     var audio = $('.player').get(0);
-
-    var $trackProgressBar = $('#track-progress .progress-bar');
-
 
     function updateProgress() {
       var value = 0;
@@ -98,16 +96,9 @@ $(document).ready(function() {
       var time2 = moment.duration({s: audio.duration });
       var prettyTime2 = moment().startOf('day').add(time2).format('m:ss');
       $('#timeLeft').text(prettyTime2);
-
-      // $trackProgressBar.css('width', value + '%');
     }
 
     audio.addEventListener('timeupdate', updateProgress, false);
-
-
-    console.log(audio);
-
-    console.log('starting music now...');
 
     // Start music playback here with the latency offset
     setTimeout(function() {
@@ -115,8 +106,6 @@ $(document).ready(function() {
     }, latency);
 
     clearInterval(latencyInterval);
-
-    console.log('cleared interval');
   });
 
   $('#play').click(function(player) {
@@ -126,7 +115,7 @@ $(document).ready(function() {
     $('.track').first().trigger('dblclick');
   });
 
-  $('#pause').click(function () {
+  $('#pause').click(function() {
     isPlaying = false;
     clearInterval(latencyInterval);
     socket.emit('pause');
@@ -145,7 +134,7 @@ $(document).ready(function() {
   });
 
   // Display number of connected users
-  socket.on('count', function (data) {
+  socket.on('count', function(data) {
     // clear everything in the dropdown menu
     $('.connected-counter ul.dropdown-menu').html('');
     for (var i = 0; i < data.clients.length; i++) {
@@ -157,8 +146,8 @@ $(document).ready(function() {
     $('#numberOfClients').hide().fadeIn(200).text(data.numberOfClients);
   });
 
-  socket.on('halt', function (data) {
-    $.each($('audio'), function () {
+  socket.on('halt', function(data) {
+    $.each($('audio'), function() {
       this.pause();
     });
   });
@@ -198,7 +187,7 @@ $(document).ready(function() {
           next();
         });
     },
-    progressall: function (event, data) {
+    progressall: function(event, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
       $progrecss.attr('data-progrecss', progress);
     }
