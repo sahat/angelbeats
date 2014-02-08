@@ -16,4 +16,10 @@ html
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/main.js')
   body
+    .connected-counter.dropdown
+      a(href='#', class='dropdown-toggle', data-toggle='dropdown')
+        span#numberOfClients 0
+        |  users connected
+      ul.dropdown-menu
+
     block content
