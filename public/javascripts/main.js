@@ -60,6 +60,65 @@ $(document).ready(function() {
     latency = Date.now() - startTime;
   });
 
+  socket.on('beginPlaying', function (data) {
+
+    // No longer need to show synchronizing.. message
+    $('.sync').hide();
+
+    // Find track by id and add highlight class for other clients
+    $('.highlight').removeClass('highlight');
+    $('.id:contains(' + data.id + ')').first().parent().addClass('highlight');
+
+    $('.playlist-controls').text(data.name);
+    $('.playlist-controls').addClass('fadeInDown animated');
+
+
+    var player = '<audio class="player">' +
+      '<source src="/uploads/' + data.file + '" type="audio/mpeg">' +
+      '</audio>';
+
+
+    $(player).insertAfter('#playlist');
+
+    var audio = $('.player').get(0);
+
+    var $trackProgressBar = $('#track-progress .progress-bar');
+
+
+    function updateProgress() {
+      var value = 0;
+      if (audio.currentTime > 0) {
+        // value = Math.floor((100 / audio.duration) * audio.currentTime);
+
+        var time = moment.duration({s: audio.currentTime });
+        var prettyTime = moment().startOf('day').add(time).format('m:ss');
+        $('#currentTime').text(prettyTime);
+      }
+
+      var time2 = moment.duration({s: audio.duration });
+      var prettyTime2 = moment().startOf('day').add(time2).format('m:ss');
+      $('#timeLeft').text(prettyTime2);
+
+      // $trackProgressBar.css('width', value + '%');
+    }
+
+    audio.addEventListener('timeupdate', updateProgress, false);
+
+
+    console.log(audio);
+
+    console.log('starting music now...');
+
+    // Start music playback here with the latency offset
+    setTimeout(function() {
+      audio.play();
+    }, latency);
+
+    clearInterval(latencyInterval);
+
+    console.log('cleared interval');
+  });
+
   $('#play').click(function(player) {
     if (isPlaying) {
       return;
