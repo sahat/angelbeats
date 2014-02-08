@@ -97,4 +97,12 @@ $(document).ready(function() {
     console.log(data.clients);
     $('#numberOfClients').hide().fadeIn(200).text(data.numberOfClients);
   });
+
+  socket.on('halt', function (data) {
+    $.each($('audio'), function () {
+      this.pause();
+    });
+  });
+
+
 });
