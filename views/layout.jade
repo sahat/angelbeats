@@ -27,3 +27,40 @@ html
     .sync Synchronizing...
 
     block content
+
+    footer.navbar.navbar-default.navbar-fixed-bottom
+      ul.nav.navbar-nav.playback-controls
+        li
+          a(id='mute')
+            span.glyphicon.glyphicon-volume-up
+        li
+          a(id='backward')
+            span.glyphicon.glyphicon-backward
+        li
+          a(id='pause')
+            span.glyphicon.glyphicon-pause
+        li
+          a(id='play')
+            span.glyphicon.glyphicon-play
+        li
+          a(id='forward')
+            span.glyphicon.glyphicon-forward
+
+      p.navbar-text
+        span.text-muted#currentTime 0:00
+        span.text-muted &nbsp;/&nbsp;
+        span.text-muted#timeLeft 0:00
+        span &nbsp;
+        strong.playlist-controls Hackathon Playlist
+      ul.nav.navbar-nav.navbar-right
+        li
+          a.fileinput-button
+            span.glyphicon.glyphicon-cloud-upload
+            |  Upload
+            input#fileupload(type='file', name='files[]', data-url='/upload', multiple=true)
+
+      form.navbar-form.navbar-right(role='search')
+        .form-group
+          span.glyphicon.glyphicon-search.text-primary
+          | &nbsp;
+          input.form-control(type='text', class='search', placeholder='Search...')
