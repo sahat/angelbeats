@@ -248,6 +248,26 @@ tr.highlight td {
   z-index: 10000;
 }
 
+@mixin animation($name, $duration: 1s, $delay: 0, $ease: linear, $iterations: infinite, $endState: normal) {
+  -webkit-animation: $name $duration $delay $ease $iterations $endState;
+  -moz-animation: $name $duration $delay $ease $iterations $endState;
+  -ms-animation: $name $duration $delay $ease $iterations $endState;
+  animation: $name $duration $delay $ease $iterations $endState;
+}
+
+@mixin gradient($deg: 90deg, $color1: #161616, $color2: #000) {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2');
+  background-image: -webkit-linear-gradient($deg, $color1 25%, $color2);
+  background-image: -moz-linear-gradient($deg, $color1 25%, $color2);
+}
+
+@mixin delay($delay) {
+  -webkit-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  -o-animation-delay: $delay;
+  animation-delay: $delay;
+}
+
 .angel-beats {
   font-size: 40px;
 }
