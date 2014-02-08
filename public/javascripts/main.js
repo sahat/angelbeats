@@ -65,5 +65,11 @@ $(document).ready(function() {
       return;
     }
     $('.track').first().trigger('dblclick');
-  })
+  });
+
+  $('#pause').click(function () {
+    isPlaying = false;
+    clearInterval(latencyInterval);
+    socket.emit('pause');
+  });
 });
