@@ -119,6 +119,32 @@ $(document).ready(function() {
     playlist.search($(this).val());
   });
 
+  /**
+   * File Upload
+   */
+
+  var $progrecss = $('.progrecss');
+
+  $('#fileupload').fileupload({
+    dataType: 'json',
+    submit: function(event, data) {
+      $progrecss.fadeIn(200)
+    },
+    stop: function() {
+      $progrecss
+        .delay(1500)
+        .fadeOut(800)
+        .queue(function(next) {
+          $(this).attr('data-progrecss', 0);
+          next();
+        });
+    },
+    progressall: function (event, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $progrecss.attr('data-progrecss', progress);
+    }
+  });
+
 
   /**
    * Convert track duration in secs to m:ss format
