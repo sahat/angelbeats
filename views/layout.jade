@@ -1,7 +1,19 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Angel Beats
+    link(href='/stylesheets/main.css', rel='stylesheet')
+    script(src='/javascripts/lib/jquery.min.js')
+    script(src='/javascripts/lib/jquery.bootstrap-growl.min.js')
+    script(src='/javascripts/lib/jquery.ui.widget.js')
+    script(src='/javascripts/lib/jquery.fileupload.js')
+    script(src='/javascripts/lib/moment.min.js')
+    script(src='/javascripts/lib/bootstrap.min.js')
+    script(src='/javascripts/lib/list.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/main.js')
   body
     block content
