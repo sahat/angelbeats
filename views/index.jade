@@ -26,3 +26,28 @@ block content
         .search-controls
           #upload-progress.progress(style='display: none')
             .progress-bar.progress-bar-info
+
+  #playlist.scrollable
+    table.table.table.table-condensed.table-hover
+      thead
+        tr
+          th.sort(data-sort='id') #
+          th.sort(data-sort='name') Name
+          th.sort(data-sort='time') Time
+          th.sort(data-sort='artist') Artist
+          th.sort(data-sort='album') Album
+          th.sort(data-sort='genre') Genre
+        tbody.list
+          if playlist.length
+            for track in playlist
+              tr.track
+                td.id= track.id
+                td.file(style='display: none;')= track.file
+                td.name= track.name
+                td.time(data-time='#{track.time}')= track.time
+                td.artist= track.artist
+                td.album= track.album
+                td.genre= track.genre
+          else
+            tr.warning
+              td(colspan=6) Playlist is empty
