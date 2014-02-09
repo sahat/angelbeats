@@ -49,7 +49,7 @@ block content
                 td.album= track.album
                 td.genre= track.genre
                 td(style='display: none;')
-                  audio(preload='false')
+                  audio(preload='none')
                     source(src='/uploads/#{track.file}', type='audio/mpeg')
           else
             tr.warning
