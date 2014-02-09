@@ -24,6 +24,7 @@ $(document).ready(function() {
 
 
   socket.on('connect', function() {
+
     if (localStorage.getItem('isHost')) {
       socket.emit('hostComeback', this.socket.sessionid);
       socket.emit('checkIfHost', this.socket.sessionid);
@@ -60,20 +61,19 @@ $(document).ready(function() {
   var latencyInterval;
   var isPlaying = false;
   var startTime;
-
   var latencyArray = [];
 
   socket.on('pong', function() {
     latency = Date.now() - startTime;
     latencyArray.push(latency);
-    $('.sync').text(latency + ' ms');
+    $('.sync').text('Ping: ' + latency + ' ms');
   });
 
   // Step 1
   // User clicks on a track from the playlist.
   $('.track').dblclick(function (e) {
-    console.log('dbl clicked');
-    // Clear latency array
+
+    // Cleanup service
     latencyArray = [];
 
     // Remove previous audio tag
