@@ -224,11 +224,6 @@ io.sockets.on('connection', function (socket) {
     socket.emit('pong');
   });
 
-  socket.on('initiatePlay', function (data) {
-    console.log(data);
-    io.sockets.emit('beginPlaying', data);
-  });
-
   socket.on('pause', function () {
     io.sockets.emit('halt', 'maestro stop playing!');
   });
