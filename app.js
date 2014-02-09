@@ -104,7 +104,7 @@ upload.on('end', function (fileInfo) {
   console.log(fileInfo.originalName)
   if (fileInfo.name !== fileInfo.originalName) {
     console.log('dup file');
-    fs.unlink(filePath);
+    fs.unlinkSync(filePath);
   } else {
     console.log('new file');
 
