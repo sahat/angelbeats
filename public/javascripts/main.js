@@ -61,13 +61,20 @@ $(document).ready(function() {
   var isPlaying = false;
   var startTime;
 
+  var latencyArray = [];
+
   socket.on('pong', function() {
     latency = Date.now() - startTime;
+    latencyArray.push(latency);
+    $('.sync').text(latency + ' ms');
   });
 
   // Step 1
   // User clicks on a track from the playlist.
   $('.track').dblclick(function (e) {
+    console.log('dbl clicked');
+    // Clear latency array
+    latencyArray = [];
 
     // Remove previous audio tag
     $('audio').remove();
@@ -175,6 +182,19 @@ $(document).ready(function() {
 
     console.log('starting music now...');
 
+    console.log(latencyArray);
+
+    var averageLatency = 0;;
+    var total = 0;
+
+    for (var i = 0; i < latencyArray.length; i++) {
+      total += latencyArray[i];
+    }
+
+    averageLatency = total / latencyArray.length;
+
+    console.log('Average: ' + averageLatency);
+
     // Start music playback here with the latency offset
     setTimeout(function() {
       audio.play();
@@ -184,7 +204,6 @@ $(document).ready(function() {
 
     console.log('cleared interval');
   });
-
 
   $('#play').click(function(player) {
     if (isPlaying) {
