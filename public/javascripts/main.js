@@ -1,5 +1,8 @@
 var socket = io.connect(window.location.href);
 
+latencyArray = [];
+
+
 $(document).ready(function() {
 
   $('#song-count').text($('.track').length + ' tracks')
@@ -70,6 +73,7 @@ $(document).ready(function() {
 
   socket.on('pong', function() {
     latency = Date.now() - startTime;
+    console.log(latency);
     latencyArray.push(latency);
     $('.sync').text('Ping: ' + latency + ' ms');
   });
@@ -77,7 +81,6 @@ $(document).ready(function() {
   $track.dblclick(function (e) {
 
     // Cleanup service
-    latencyArray = [];
     $('audio').remove();
     $playlistControls.removeClass('fadeInDown animated');
 
