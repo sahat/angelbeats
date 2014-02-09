@@ -78,7 +78,7 @@ $(document).ready(function() {
     latencyInterval = setInterval (function() {
       startTime = Date.now();
       socket.emit('ping');
-    }, 100);
+    }, 4);
   });
 
   $track.dblclick(function (e) {
@@ -189,7 +189,7 @@ $(document).ready(function() {
 
     audio.addEventListener('canplaythrough', function() {
       console.log('loaded audio metadata');
-      this.currentTime = Math.ceil(averageLatency/1000);
+//      this.currentTime = Math.ceil(averageLatency/1000);
 
       // Start music playback here with the latency offset
       setTimeout(function() {
