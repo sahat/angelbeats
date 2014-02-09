@@ -7639,6 +7639,9 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
+html {
+  -webkit-font-smoothing: antialiased; }
+
 body {
   background-color: #fbfbfb;
   padding-bottom: 20px; }

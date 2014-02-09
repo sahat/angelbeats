@@ -21,7 +21,6 @@ $input-bg: #111;
 
 //$text-muted: #9dc9f5;
 
-
 $table-bg: #0b79e5;
 $table-bg-accent: #9dc9f5;
 
@@ -36,6 +35,9 @@ $grid-float-breakpoint: $screen-phone;
 @import "jquery.fileupload.css.scss";
 @import "bootstrap";
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
 
 body {
   background-color: #fbfbfb;
@@ -91,7 +93,6 @@ tr.highlight td {
   border-width: 0;
 }
 
-
 .btn {
   border-radius: 0;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.11), 1px 1px 0 rgba(255, 255, 255, 0.21) inset;
@@ -142,7 +143,6 @@ tr.highlight td {
   //  }
 }
 
-
 @media (min-width: 768px) {
   .navbar-form.navbar-right:last-child {
     margin-right: 0;
@@ -165,7 +165,6 @@ tr.highlight td {
 .form-control:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
 }
-
 
 // Playback controls
 .playback-controls {
@@ -273,7 +272,6 @@ $progress-bar-info-bg: $brand-primary;
   text-shadow: 0px 1px 1px #222;
 }
 
-
 @mixin animation($name, $duration: 1s, $delay: 0, $ease: linear, $iterations: infinite, $endState: normal) {
   -webkit-animation: $name $duration $delay $ease $iterations $endState;
   -moz-animation: $name $duration $delay $ease $iterations $endState;
@@ -298,14 +296,11 @@ $progress-bar-info-bg: $brand-primary;
   font-size: 40px;
 }
 
-
 @media only screen and (max-width: 768px) {
   #playlist {
     padding-bottom: 14px;
   }
 }
-
-
 
 @-moz-keyframes move1 {
   0% {
@@ -576,7 +571,6 @@ $progress-bar-info-bg: $brand-primary;
     width: 100%
   }
 }
-
 
 /* PROGRESS BAR */
 
