@@ -48,6 +48,9 @@ block content
                 td.artist= track.artist
                 td.album= track.album
                 td.genre= track.genre
+                td(style='display: none;')
+                  audio
+                    source(src='/uploads/#{track.file}', type='audio/mpeg')
           else
             tr.warning
               td(colspan=6) Playlist is empty

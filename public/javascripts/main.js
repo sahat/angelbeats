@@ -70,7 +70,6 @@ $(document).ready(function() {
   var $sync = $('.sync');
   socket.on('pong', function() {
     latency = Date.now() - startTime;
-    console.log(latency)
     if (latency > 1) latencyArray.push(latency);
     $sync.text('Ping: ' + latency + ' ms');
   });
@@ -85,7 +84,7 @@ $(document).ready(function() {
   $track.dblclick(function (e) {
 
     // Cleanup service
-    $('audio').remove();
+//    $('audio').remove();
     $playlistControls.removeClass('fadeInDown animated');
 
 
@@ -148,13 +147,14 @@ $(document).ready(function() {
     $('.playlist-controls').addClass('fadeInDown animated');
 
 
-    var player = '<audio class="player">' +
-      '<source src="/uploads/' + data.file + '" type="audio/mpeg">' +
-      '</audio>';
+//    var player = '<audio class="player">' +
+//      '<source src="/uploads/' + data.file + '" type="audio/mpeg">' +
+//      '</audio>';
 
+    var audio = $("td.id:contains('" + data.id + "')").parent().find('audio').get(0);
 
-    $(player).insertAfter('#playlist');
-    var audio = $('.player').get(0);
+//    $(player).insertAfter('#playlist');
+//    var audio = $('.player').get(0);
 
     function updateProgress() {
       var value = 0;
@@ -188,10 +188,17 @@ $(document).ready(function() {
 
     console.log('Average: ' + averageLatency);
 
-    setTimeout(function() {
-      console.log('PLAYING!!!!');
-      audio.play();
-    }, averageLatency);
+    audio.currentTime = averageLatency / 1000;
+
+    console.log(audio.currentTime);
+    console.log('PLAYING!!!!');
+
+    audio.play();
+
+//    setTimeout(function() {
+//      console.log('PLAYING!!!!');
+//      audio.play();
+//    }, averageLatency);
 
 //    audio.addEventListener('canplaythrough', function() {
 //      console.log('loaded audio metadata');
