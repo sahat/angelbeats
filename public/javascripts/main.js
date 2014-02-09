@@ -128,7 +128,7 @@ $(document).ready(function() {
         genre: $(self).find('.genre').text()
       });
 
-    }, 1000);
+    }, 400);
   });
 
 
@@ -188,20 +188,19 @@ $(document).ready(function() {
 
     console.log('Average: ' + averageLatency);
 
-    audio.addEventListener('canplaythrough', function() {
-      console.log('loaded audio metadata');
+    setTimeout(function() {
+      console.log('PLAYING!!!!');
+      audio.play();
+    }, averageLatency);
 
-      this.currentTime = averageLatency / 1000;
-
-      // Start music playback here with the latency offset
-      setTimeout(function() {
-        console.log('PLAYING!!!!');
-        audio.play();
-      }, averageLatency);
-    });
-
-
-
+//    audio.addEventListener('canplaythrough', function() {
+//      console.log('loaded audio metadata');
+//
+//      this.currentTime = averageLatency / 1000;
+//
+//      // Start music playback here with the latency offset
+//
+//    });
 
     clearInterval(latencyInterval);
 
