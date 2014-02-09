@@ -63,40 +63,37 @@ $(document).ready(function() {
   var startTime;
   var latencyArray = [];
 
+  var $track = $('.track');
+  var $playlistControls = $('.playlist-controls');
+  var $sync = $('.sync');
+  var $highlight = $('.highlight');
+
   socket.on('pong', function() {
     latency = Date.now() - startTime;
     latencyArray.push(latency);
     $('.sync').text('Ping: ' + latency + ' ms');
   });
 
-  // Step 1
-  // User clicks on a track from the playlist.
-  $('.track').dblclick(function (e) {
+  $track.dblclick(function (e) {
 
     // Cleanup service
     latencyArray = [];
-
-    // Remove previous audio tag
     $('audio').remove();
-
-    $('.playlist-controls').removeClass('fadeInDown animated');
-
+    $playlistControls.removeClass('fadeInDown animated');
 
 
-    // Shouldn't be able to double click an already selected track
+    // Prevent playback of the same track that is currently playing
     if ($(e.target).parent().hasClass('highlight')) {
       return;
     }
 
-    // TODO: probably should be set somewher else
     isPlaying = true;
 
-    // Display synchronize banner in top right corner
-    $('.sync').show();
+    $sync.show();
 
     // Highlight current track when user double clicks on it
     if (e.originalEvent !== undefined) {
-      $('.highlight').removeClass('highlight');
+      $highlight.removeClass('highlight');
       $(this).addClass('highlight');
     }
 
@@ -107,7 +104,7 @@ $(document).ready(function() {
     latencyInterval = setInterval (function() {
       startTime = Date.now();
       socket.emit('ping');
-    }, 50);
+    }, 10);
 
     // Step 2
     // Tell server that we want to play a song, by passing a track id.
@@ -184,7 +181,7 @@ $(document).ready(function() {
 
     console.log(latencyArray);
 
-    var averageLatency = 0;;
+    var averageLatency;
     var total = 0;
 
     for (var i = 0; i < latencyArray.length; i++) {
@@ -198,7 +195,7 @@ $(document).ready(function() {
     // Start music playback here with the latency offset
     setTimeout(function() {
       audio.play();
-    }, latency);
+    }, 1000 + averageLatency);
 
     clearInterval(latencyInterval);
 
