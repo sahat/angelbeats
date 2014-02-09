@@ -15,8 +15,8 @@ var upload = require('jquery-file-upload-middleware');
 var fs = require('fs');
 var _ = require('lodash');
 
-if (process.env.HEROKU_POSTGRESQL_CRIMSON_URL) {
-  var match = process.env.HEROKU_POSTGRESQL_CRIMSON_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
+if (process.env.HEROKU_POSTGRESQL_NAVY_URL) {
+  var match = process.env.HEROKU_POSTGRESQL_NAVY_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
   var sequelize = new Sequelize(match[5], match[1], match[2], {
     dialect: 'postgres',
     protocol: 'postgres',
