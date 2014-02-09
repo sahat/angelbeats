@@ -1,8 +1,5 @@
 var socket = io.connect(window.location.href);
 
-latencyArray = [];
-
-
 $(document).ready(function() {
 
   $('#song-count').text($('.track').length + ' tracks')
@@ -78,6 +75,13 @@ $(document).ready(function() {
     $('.sync').text('Ping: ' + latency + ' ms');
   });
 
+  socket.on('everyone_ping', function() {
+    latencyInterval = setInterval (function() {
+      startTime = Date.now();
+      socket.emit('ping');
+    }, 10);
+  });
+
   $track.dblclick(function (e) {
 
     // Cleanup service
@@ -104,10 +108,8 @@ $(document).ready(function() {
     socket.emit('pause');
 
     // update ping
-    latencyInterval = setInterval (function() {
-      startTime = Date.now();
-      socket.emit('ping');
-    }, 10);
+    socket.emit('startping');
+
 
     // Step 2
     // Tell server that we want to play a song, by passing a track id.

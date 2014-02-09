@@ -216,8 +216,12 @@ io.sockets.on('connection', function (socket) {
     io.sockets.emit('beginPlaying', data);
   });
 
+  socket.on('startping', function() {
+    io.sockets.emit('everyone_ping');
+  });
+
   socket.on('ping', function () {
-    io.sockets.emit('pong');
+    socket.emit('pong');
   });
 
   socket.on('initiatePlay', function (data) {
