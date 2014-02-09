@@ -195,7 +195,7 @@ $(document).ready(function() {
     // Start music playback here with the latency offset
     setTimeout(function() {
       audio.play();
-    }, 1000 + averageLatency);
+    }, averageLatency);
 
     clearInterval(latencyInterval);
 
