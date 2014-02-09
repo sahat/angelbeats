@@ -78,7 +78,7 @@ $(document).ready(function() {
     latencyInterval = setInterval (function() {
       startTime = Date.now();
       socket.emit('ping');
-    }, 10);
+    }, 100);
   });
 
   $track.dblclick(function (e) {
