@@ -67,11 +67,12 @@ $(document).ready(function() {
   var $playlistControls = $('.playlist-controls');
   var $sync = $('.sync');
   var $highlight = $('.highlight');
-
+  var $sync = $('.sync');
   socket.on('pong', function() {
     latency = Date.now() - startTime;
-    latencyArray.push(latency);
-    $('.sync').text('Ping: ' + latency + ' ms');
+    console.log(latency)
+    if (latency > 1) latencyArray.push(latency);
+    $sync.text('Ping: ' + latency + ' ms');
   });
 
   socket.on('everyone_ping', function() {
@@ -189,7 +190,8 @@ $(document).ready(function() {
 
     audio.addEventListener('canplaythrough', function() {
       console.log('loaded audio metadata');
-      this.currentTime = averageLatency/1000;
+
+      this.currentTime = averageLatency / 1000;
 
       // Start music playback here with the latency offset
       setTimeout(function() {
