@@ -189,7 +189,7 @@ $(document).ready(function() {
 
     audio.addEventListener('canplaythrough', function() {
       console.log('loaded audio metadata');
-      this.currentTime = Math.ceil(averageLatency);
+      this.currentTime = Math.ceil(averageLatency/1000);
 
       // Start music playback here with the latency offset
       setTimeout(function() {
