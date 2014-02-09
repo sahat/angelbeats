@@ -70,7 +70,6 @@ $(document).ready(function() {
 
   socket.on('pong', function() {
     latency = Date.now() - startTime;
-    console.log(latency);
     latencyArray.push(latency);
     $('.sync').text('Ping: ' + latency + ' ms');
   });
@@ -136,7 +135,7 @@ $(document).ready(function() {
   // Start playing with the latency offset.
   // This happens after server receives initiatePlay event
   socket.on('beginPlaying', function (data) {
-
+    console.log('Begin Playing');
     // No longer need to show synchronizing.. message
     $('.sync').hide();
 
@@ -154,11 +153,7 @@ $(document).ready(function() {
 
 
     $(player).insertAfter('#playlist');
-
     var audio = $('.player').get(0);
-
-    var $trackProgressBar = $('#track-progress .progress-bar');
-
 
     function updateProgress() {
       var value = 0;
@@ -179,12 +174,7 @@ $(document).ready(function() {
 
     audio.addEventListener('timeupdate', updateProgress, false);
 
-
-    console.log(audio);
-
     console.log('starting music now...');
-
-    console.log(latencyArray);
 
     var averageLatency;
     var total = 0;
@@ -197,10 +187,19 @@ $(document).ready(function() {
 
     console.log('Average: ' + averageLatency);
 
-    // Start music playback here with the latency offset
-    setTimeout(function() {
-      audio.play();
-    }, averageLatency);
+    audio.addEventListener('canplaythrough', function() {
+      console.log('loaded audio metadata');
+      this.currentTime = Math.ceil(averageLatency);
+
+      // Start music playback here with the latency offset
+      setTimeout(function() {
+        console.log('PLAYING!!!!');
+        audio.play();
+      }, averageLatency);
+    });
+
+
+
 
     clearInterval(latencyInterval);
 
